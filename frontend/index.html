@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SkyDrone • Fast Drone Delivery</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="navbar">
+  <div class="brand">
+    <span class="logo">🚁</span>
+    <span class="name">SkyDrone</span>
+  </div>
+
+  <input 
+    type="text" 
+    placeholder="Search groceries, electronics, fashion…" 
+    id="search"
+    onkeyup="searchProducts()"
+  />
+
+  <a href="cart.html" class="cart">🛒 Cart</a>
+</header>
+
+<section class="hero">
+  <h1>10-Minute Drone Delivery</h1>
+  <p>Groceries, electronics & more — delivered from the sky.</p>
+</section>
+
+<section class="categories">
+  <button onclick="filterCategory('All')">All</button>
+  <button onclick="filterCategory('Groceries')">Groceries</button>
+  <button onclick="filterCategory('Electronics')">Electronics</button>
+  <button onclick="filterCategory('Fashion')">Fashion</button>
+  <button onclick="filterCategory('Sports')">Sports</button>
+</section>
+
+<section id="products" class="grid"></section>
+
+<script src="app.js"></script>
+</body>
+</html>

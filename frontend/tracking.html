@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Drone Tracking</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>🚁 Live Drone Tracking</h1>
+<p id="status">Connecting...</p>
+<p id="coords"></p>
+<p id="battery"></p>
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+  // 🔥 AUTO-DETECT ENVIRONMENT
+  const socketURL =
+    window.location.hostname === "localhost"
+      ? "http://localhost:3000"
+      : window.location.origin;
+
+  const socket = io(socketURL);
+
+  socket.on("connect", () => {
+    document.getElementById("status").innerText =
+      "🚀 Drone dispatched";
+  });
+
+  socket.on("droneUpdate", (data) => {
+    document.getElementById("coords").innerText =
+      `📍 Location: ${data.lat.toFixed(5)}, ${data.lng.toFixed(5)}`;
+
+    document.getElementById("battery").innerText =
+      `🔋 Battery: ${data.battery.toFixed(1)}%`;
+
+    if (data.status === "DELIVERED") {
+      document.getElementById("status").innerText =
+        "✅ Order delivered";
+    }
+  });
+</script>
+
+</body>
+</html>
